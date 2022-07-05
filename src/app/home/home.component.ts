@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, map, Observable, Subscription } from 'rxjs';
+import { filter, interval, map, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     customObservable
       .pipe(
+        filter((data: any) => {
+          return data > 0;
+        }),
         map((data: any) => {
           return 'Round: ' + (data + 1);
         })
